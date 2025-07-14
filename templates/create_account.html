@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Account - SoftBlog</title>
+  <!-- Load CSS from static folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Stars background -->
+  <div class="stars"></div>
+  <div class="stars2"></div>
+
+  <!-- Orange Nebula glow -->
+  <div class="nebula"></div>
+
+  <!-- Header -->
+  <header>
+    <img src="{{ url_for('static', filename='softlogo.png') }}" alt="SoftBlog Logo" class="logo">
+    <div class="site-name">SoftBlog</div>
+  </header>
+
+  <!-- Flash messages (fixed version) -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <!-- Form Container -->
+  <div class="form-container">
+    <form class="login-form" action="{{ url_for('create_account') }}" method="POST">
+      <h2>Create Account</h2>
+      <div class="input-group">
+        <input type="text" id="name" name="name" required placeholder=" ">
+        <label for="name">Name</label>
+      </div>
+      <div class="input-group">
+        <input type="email" id="email" name="email" required placeholder=" ">
+        <label for="email">Email</label>
+      </div>
+      <div class="input-group password-group">
+        <input type="password" id="password" name="password" required placeholder=" ">
+        <label for="password">Password</label>
+        <button type="button" class="toggle-password">Show</button>
+      </div>
+      <button type="submit" class="submit-btn">Create Account</button>
+    </form>
+    <a href="{{ url_for('index') }}" class="back-home-btn">← Back to Home</a>
+  </div>
+
+  <script>
+    const togglePasswordBtn = document.querySelector('.toggle-password');
+    const passwordInput = document.getElementById('password');
+
+    togglePasswordBtn.addEventListener('click', function () {
+      const isPassword = passwordInput.getAttribute('type') === 'password';
+      passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+      togglePasswordBtn.textContent = isPassword ? 'Hide' : 'Show';
+    });
+  </script>
+</body>
+</html>

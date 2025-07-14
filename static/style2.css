@@ -1,0 +1,359 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  min-height: 100vh;
+  background: #000;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto; /* Allow scrolling if needed */
+  position: relative;
+  padding: 0 10px; /* Add horizontal padding for small screens */
+}
+
+/* Stars Layers */
+.stars, .stars2 {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px);
+  z-index: 0;
+}
+
+.stars {
+  background-size: 60px 60px;
+  animation: moveStars 200s linear infinite, twinkle 3s ease-in-out infinite alternate;
+}
+
+.stars2 {
+  background-size: 100px 100px;
+  opacity: 0.4;
+  animation: moveStarsReverse 300s linear infinite, twinkle 5s ease-in-out infinite alternate;
+}
+
+@keyframes moveStars {
+  from { transform: translate(0, 0); }
+  to { transform: translate(100px, 100px); }
+}
+
+@keyframes moveStarsReverse {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-100px, -100px); }
+}
+
+@keyframes twinkle {
+  from { opacity: 0.8; }
+  to { opacity: 1; }
+}
+
+/* Nebula Glow */
+.nebula {
+  position: absolute;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle at center, rgba(255, 140, 0, 0.1) 0%, transparent 80%);
+  filter: blur(100px);
+  z-index: 1;
+}
+
+/* Header */
+header {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  display: flex;
+  align-items: center;
+  z-index: 3;
+  padding-right: 20px;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+}
+
+.site-name {
+  font-size: 1.8rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, #ffffff, #FFA500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Form Container - glassmorphic box */
+.form-container {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(25px);
+  border-radius: 20px;
+  padding: 50px 40px;
+  width: 350px;
+  max-width: 95vw;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  animation: fadeInUp 1s ease forwards;
+  opacity: 0;
+  z-index: 2;
+}
+
+@keyframes fadeInUp {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Form Heading */
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 35px;
+  font-weight: 600;
+  font-size: 26px;
+  background: linear-gradient(90deg, #ffffff, #FFA500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Input Group */
+.input-group {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 10px;
+  border: none;
+  border-bottom: 2px solid #FFA500;
+  background: transparent;
+  color: #fff;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.4s ease;
+}
+
+.input-group input:focus {
+  border-color: #FFA500;
+}
+
+.input-group label {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+  color: rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+  font-size: 15px;
+  transition: 0.4s ease all;
+}
+
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label {
+  top: -10px;
+  left: 5px;
+  font-size: 12px;
+  color: #FFA500;
+}
+
+/* Autofill fixes */
+.input-group input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-text-fill-color: #fff !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.input-group input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+}
+
+.input-group input::selection {
+  background: rgba(255, 165, 0, 0.3);
+  color: #fff;
+}
+
+/* Toggle Password */
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  background: none;
+  border: none;
+  color: #FFA500;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/* Submit Button */
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: #FFA500;
+  color: #000;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 15px rgba(255, 165, 0, 0.4);
+}
+
+/* Back Home Link */
+.back-home-btn {
+  display: block;
+  margin-top: 25px;
+  text-align: center;
+  text-decoration: none;
+  color: #FFA500;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.back-home-btn:hover {
+  color: #fff;
+}
+
+/* Flash message container styled like the form */
+.flash {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 165, 0, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 12px 25px;
+  border: 1px solid #FFA500;
+  border-radius: 10px;
+  color: #FFA500;
+  font-weight: 500;
+  z-index: 999;
+  animation: fadeInDown 0.5s ease forwards, fadeOutUp 0.5s ease forwards 3s;
+  font-size: 1rem;
+  max-width: 90vw;
+  text-align: center;
+}
+
+@keyframes fadeInDown {
+  0% { transform: translate(-50%, -20px); opacity: 0; }
+  100% { transform: translate(-50%, 0); opacity: 1; }
+}
+
+@keyframes fadeOutUp {
+  0% { transform: translate(-50%, 0); opacity: 1; }
+  100% { transform: translate(-50%, -20px); opacity: 0; }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .nebula {
+      width: 600px;
+      height: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nebula {
+      width: 400px;
+      height: 400px;
+  }
+  .form-container {
+      padding: 35px 15px;
+      width: 95vw;
+      max-width: 95vw;
+  }
+  header {
+      left: 10px;
+      top: 10px;
+      padding-right: 10px;
+  }
+  .logo {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+  }
+  .site-name {
+      font-size: 1.3rem;
+  }
+  .login-form h2 {
+      font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+      padding: 0 2px;
+  }
+  .site-name {
+      font-size: 1.05rem;
+  }
+  .logo {
+      width: 32px;
+      height: 32px;
+      margin-right: 7px;
+  }
+  header {
+      left: 2px;
+      top: 2px;
+      padding-right: 5px;
+  }
+  .form-container {
+      padding: 18px 5px;
+      width: 99vw;
+      max-width: 99vw;
+      border-radius: 12px;
+  }
+  .login-form h2 {
+      font-size: 16px;
+      margin-bottom: 20px;
+  }
+  .input-group input,
+  .input-group label {
+      font-size: 13px;
+  }
+  .toggle-password {
+      font-size: 11px;
+      top: 10px;
+  }
+  .submit-btn {
+      font-size: 14px;
+      padding: 10px;
+  }
+  .back-home-btn {
+      font-size: 12px;
+      margin-top: 15px;
+  }
+  .flash {
+      font-size: 0.95rem;
+      padding: 10px 8px;
+      top: 10px;
+  }
+  .nebula {
+      width: 200px;
+      height: 200px;
+  }
+  /* --- CRUCIAL: Prevent background overflow --- */
+  html, body {
+    width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  .stars, .stars2 {
+    width: 100vw !important;
+    height: 100vh !important;
+    min-width: 0 !important;
+    max-width: 100vw !important;
+    left: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SoftCode - User</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='user.css') }}">
+</head>
+<body>
+  <!-- Stars layers -->
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="nebula"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <img src="{{ url_for('static', filename='softlogo.png') }}" alt="SoftCode Logo">
+      <span class="site-name">SoftCode</span>
+    </div>
+    <div class="profile" id="profile">
+      <div class="profile-initials">{{ initials }}</div>
+      <span class="username">{{ username }}</span>
+      <div class="dropdown" id="dropdown">
+        <a href="#">My Blog</a>
+        <a href="{{ url_for('logout') }}">Log Out</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="content">
+    <div class="hero-text">
+      <h1>Welcome to SoftCode</h1>
+      <p>Share your thoughts, read amazing blogs, and connect with the community under the stars.</p>
+    </div>
+
+    <!-- Buttons -->
+    <div class="buttons">
+      <button class="create-blog" onclick="window.location.href='{{ url_for('create_blog') }}'">
+        <img src="{{ url_for('static', filename='magic-wand.png') }}" alt="Create Blog">
+        <span>Create Blog</span>
+      </button>
+
+      <!-- ✅ Fixed Read Blog button -->
+      <button class="read-blog" onclick="window.location.href='{{ url_for('read_blogs') }}'">
+        <img src="{{ url_for('static', filename='open-book.png') }}" alt="Read Blog">
+        <span>Read Blog</span>
+      </button>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>"Empowering your words, lighting up the universe."</p>
+  </footer>
+
+  <!-- JS for dropdown -->
+  <script>
+    const profile = document.getElementById('profile');
+    const dropdown = document.getElementById('dropdown');
+
+    profile.addEventListener('click', () => {
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    window.addEventListener('click', function(e) {
+      if (!profile.contains(e.target)) {
+        dropdown.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SoftBlog - Welcome</title>
+  <!-- Load CSS from static folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Stars Background -->
+  <div class="stars"></div>
+  <div class="stars2"></div>
+
+  <!-- Black Hole -->
+  <div class="blackhole"></div>
+
+  <!-- Header with Logo and Site Name -->
+  <header>
+    <img src="{{ url_for('static', filename='softlogo.png') }}" alt="SoftBlog Logo" class="logo">
+    <div class="site-name">SoftBlog</div>
+  </header>
+
+  <!-- Flash messages -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul class="flashes">
+        {% for category, message in messages %}
+          <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  <!-- Main Title -->
+  <h1 class="main-title">Welcome to SoftBlog</h1>
+
+  <!-- Action Buttons -->
+  <div class="buttons">
+    <a href="{{ url_for('create_account') }}" class="btn">Create Account</a>
+    <a href="{{ url_for('login') }}" class="btn">Login</a>
+  </div>
+</body>
+</html>

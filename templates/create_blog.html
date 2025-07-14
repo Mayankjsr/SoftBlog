@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Blog</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='create_blog.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="nebula"></div>
+
+  <header>
+    <img src="{{ url_for('static', filename='softlogo.png') }}" alt="SoftBlog Logo" class="logo">
+    <div class="site-name">SoftBlog</div>
+  </header>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <div class="form-container">
+    <form action="{{ url_for('create_blog') }}" method="POST" class="blog-form" id="blogForm">
+      <h2>Create Your Blog</h2>
+
+      <div class="input-group">
+        <input type="text" id="title" name="title" required placeholder=" ">
+        <label for="title">Blog Title</label>
+      </div>
+
+      <div class="input-group">
+        <textarea id="content" name="content" rows="6" required placeholder=" "></textarea>
+        <label for="content">Your Thoughts...</label>
+      </div>
+
+      <div class="font-selection">
+        <p>Select Font:</p>
+        <div class="fonts">
+          <label><input type="radio" name="font" value="Georgia" checked> <span style="font-family: Georgia;">Georgia</span></label>
+          <label><input type="radio" name="font" value="Times New Roman"> <span style="font-family: 'Times New Roman';">Times New Roman</span></label>
+          <label><input type="radio" name="font" value="Arial"> <span style="font-family: Arial;">Arial</span></label>
+          <label><input type="radio" name="font" value="Courier New"> <span style="font-family: 'Courier New';">Courier New</span></label>
+          <label><input type="radio" name="font" value="Verdana"> <span style="font-family: Verdana;">Verdana</span></label>
+        </div>
+      </div>
+
+      <div class="background-selection">
+        <p>Select Background:</p>
+        <div class="background-options">
+          <label>
+            <input type="radio" name="background" value="nebula.jpg" checked>
+            <img src="{{ url_for('static', filename='14121195_5430284.jpg') }}" alt="Nebula">
+          </label>
+          <label>
+            <input type="radio" name="background" value="stars.jpg">
+            <img src="{{ url_for('static', filename='14658085_5512545.jpg') }}" alt="Stars">
+          </label>
+          <label>
+            <input type="radio" name="background" value="galaxy.jpg">
+            <img src="{{ url_for('static', filename='72657892_9805703.jpg') }}" alt="Galaxy">
+          </label>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button type="button" class="preview-btn" onclick="previewBlog()">Preview</button>
+        <button type="submit" class="submit-btn">Publish</button>
+      </div>
+    </form>
+
+    <a href="{{ url_for('user_page') }}" class="back-home-btn">← Back to Dashboard</a>
+  </div>
+
+  <script>
+    function previewBlog() {
+      const form = document.getElementById('blogForm');
+      form.action = "{{ url_for('preview_blog') }}";
+      form.target = "_blank"; // Open preview in new tab
+      form.submit();
+      form.action = "{{ url_for('create_blog') }}";
+      form.target = "";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Preview: {{ title }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='preview.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body style="background: url('{{ url_for('static', filename=bg_image) }}') center/cover no-repeat fixed; font-family: '{{ font }}', 'Poppins', sans-serif;">
+  <div class="preview-container">
+    <div class="preview-title">{{ title }}</div>
+    <div class="preview-author">By {{ author }}</div>
+    <div class="preview-content" style="font-family: '{{ font }}', 'Poppins', sans-serif;">{{ content }}</div>
+  </div>
+</body>
+</html>
